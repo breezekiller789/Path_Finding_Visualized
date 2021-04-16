@@ -1,5 +1,17 @@
 # Path Finding Algorithm Visualized Using Pygame
 
+## A* Algorithm Demo
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Astar_Demo.gif)
+
+## BFS Algorithm Demo
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/BFS_Demo.gif)
+
+## Dijkstra Algorithm Demo
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Dijkstra_Demo.gif)
+
+## DFS Algorithm Demo
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/DFS_Demo.gif)
+
 ## Getting Started
 
 * Press d to use DFS Algorithm
@@ -19,10 +31,10 @@ pip install virtualenv
 ### Installing
 
 ```
-git clone
+git clone https://github.com/breezekiller789/Path_Finding_Visualized.git
 ```
 ```
-cd 
+cd Path_Finding_Visualized
 ```
 ```
 virtualenv venv
