@@ -14,7 +14,7 @@
 
 ## Getting Started
 
-* First Mouse Click twice to add Source node, End nodes
+* First two mouse click to add Source node, End node
 * Mouse left click to add walls
 * Mouse right click to remove nodes
 * Press d to use DFS Algorithm
