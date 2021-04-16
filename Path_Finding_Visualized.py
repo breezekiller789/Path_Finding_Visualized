@@ -1,13 +1,12 @@
 import pygame
 import Colors
-# from Algorithms import Astar
 from Algorithms.BFS import BFS
 from Algorithms.DFS import DFS
 from Algorithms.Astar import Astar
 from Algorithms.Dijkstra import Dijkstra
 pygame.init()
 
-WIDTH = 800
+WIDTH = 1000
 screen = pygame.display.set_mode((WIDTH, WIDTH))
 pygame.display.set_caption("A* Path Finding Algorithm")
 
