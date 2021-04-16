@@ -165,7 +165,7 @@ def Right_Clicked_Erase(Grid, Start, End, ROW, width):
 
 
 def main():
-    ROW = 20
+    ROW = 20    # Modify this to change size
     Grid = MakeGrid(ROW, WIDTH)
     run = True
     Start = None
@@ -177,6 +177,7 @@ def main():
                 run = False
 
             elif event.type == pygame.KEYDOWN:
+
                 # Press key c to clean the board
                 if event.key == pygame.K_c:
                     ClearBoard(Grid)
@@ -187,7 +188,6 @@ def main():
                 # Press key r to clean board but leave walls, start, end nodes
                 elif event.key == pygame.K_r:
                     ResetBoard_Leave_Walls_Start_End(Grid)
-                    # Grid = MakeGrid(ROW, WIDTH)
 
                 # Press key b to visualize BFS algorithm
                 elif event.key == pygame.K_b:

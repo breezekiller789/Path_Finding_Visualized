@@ -14,6 +14,9 @@
 
 ## Getting Started
 
+* Click twice to add Source node, End nodes
+* Mouse left click to add walls
+* Mouse right click to remove walls
 * Press d to use DFS Algorithm
 * Press b to use BFS Algorithm
 * Press a to use A* Algorithm
@@ -43,6 +46,9 @@ virtualenv venv
 ```
 ```
 source venv/bin/activate
+```
+```
+pip install requirements.txt
 ```
 
 ## Running the program
