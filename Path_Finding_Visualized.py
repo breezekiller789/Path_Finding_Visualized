@@ -3,6 +3,7 @@ import Colors
 # from Algorithms import Astar
 from Algorithms.BFS import BFS
 from Algorithms.DFS import DFS
+from Algorithms.Astar import Astar
 pygame.init()
 
 WIDTH = 800
@@ -79,6 +80,9 @@ class Node(object):
         if self.col >= 1 and not Grid[self.row][self.col-1].isWall():
             self.neighbors.append(Grid[self.row][self.col-1])
 
+    def __lt__(self, other):
+        return False
+
 
 def MakeGrid(Rows, width):
     Gap = width // Rows
@@ -154,7 +158,7 @@ def Right_Clicked_Erase(Grid, Start, End, ROW, width):
 
 
 def main():
-    ROW = 20
+    ROW = 50
     Grid = MakeGrid(ROW, WIDTH)
     run = True
     Start = None
@@ -182,8 +186,18 @@ def main():
                         End
                     )
 
+                # Press key d to visualize DFS algorithm
                 elif event.key == pygame.K_d:
                     DFS(
+                        lambda: Draw(screen, Grid, ROW, WIDTH),
+                        Grid,
+                        Start,
+                        End
+                    )
+
+                # Press key a to visualize A* algorithm
+                elif event.key == pygame.K_a:
+                    Astar(
                         lambda: Draw(screen, Grid, ROW, WIDTH),
                         Grid,
                         Start,
