@@ -17,8 +17,10 @@
 * Press d to use DFS Algorithm
 * Press b to use BFS Algorithm
 * Press a to use A* Algorithm
-* Press SPACE to pause the program
+* Press j to use Dijkstra Algorithm
+* Press SPACE to pause the algorithm
 * Press c to clear board
+* Press r to clear board but leave walls, start, end nodes
 
 ### Prerequisites
 
@@ -51,7 +53,7 @@ python Path_Finding_Visualized.py
 
 ### Make your own board
 
-You can modify the board size by changing the ROW variable inside main()
+You can modify the board size by changing the ROW variable inside main(), enjoy:))
 
 ## Author
 
