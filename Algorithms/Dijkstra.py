@@ -31,6 +31,7 @@ def Dijkstra(Draw, Grid, Start, End):
         temp_Distance = Distances[currentNode] + 1
         for neighbor in currentNode.neighbors:
             if neighbor not in Visited:
+                # Relax
                 if temp_Distance < Distances[neighbor]:
                     Time_Inserted += 1
                     neighbor.comefrom = currentNode

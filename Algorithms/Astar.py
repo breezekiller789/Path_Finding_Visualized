@@ -13,10 +13,10 @@ def Heuristic(p1, p2):
 def Astar(Draw, Grid, Start, End):
     # Keep track of the time, if there are two identical f_score,
     # then we check who inserted into openset first
-    count = 0
+    time_inserted = 0
     openSet = PriorityQueue()
     # (f_score, node), f_score will be consider as key
-    openSet.put((0, count, Start))
+    openSet.put((0, time_inserted, Start))
     g_Score = {node: float("inf") for row in Grid for node in row}
     f_Score = {node: float("inf") for row in Grid for node in row}
     g_Score[Start] = 0
@@ -43,15 +43,19 @@ def Astar(Draw, Grid, Start, End):
         # Update Neighbors' g, f scores
         tmp_g_Score = g_Score[currentNode] + 1
         for neighbor in currentNode.neighbors:
+            # Kinda like Dijkstra's relaxing
             if tmp_g_Score <= g_Score[neighbor]:
                 neighbor.comefrom = currentNode
                 g_Score[neighbor] = tmp_g_Score
                 f_Score[neighbor] = tmp_g_Score + Heuristic(
                     neighbor.Position(), End.Position())
+                # Because PriorityQueue won't let us search element in Queues
+                # That's why we need openSetHash to check if this node is in
+                # Queue
                 if neighbor not in openSetHash:
-                    count += 1
+                    time_inserted += 1  # Add time stamp
                     openSetHash.add(neighbor)
-                    openSet.put((f_Score[neighbor], count, neighbor))
+                    openSet.put((f_Score[neighbor], time_inserted, neighbor))
                     neighbor.makeOpenSet()
         Draw()
         if currentNode != Start:

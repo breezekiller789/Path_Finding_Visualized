@@ -1,6 +1,12 @@
 from Algorithms.Reconstruct_Path import Reconstruct_Path
 import pygame
 
+# I encountered a problem that if currentNode has all neighbors visited, then my
+# program will get stuck because it has no neighbor to visit, and my solution to
+# that is, i just simply go back to previous node since i have tracked the
+# previous node of each node, i go back to previous nodes until i have neighbors
+# to visit, then i will go from there.
+
 
 def DFS(Draw, Grid, Start, End):
     Visited = {Start}
