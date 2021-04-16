@@ -4,6 +4,7 @@ import Colors
 from Algorithms.BFS import BFS
 from Algorithms.DFS import DFS
 from Algorithms.Astar import Astar
+from Algorithms.Dijkstra import Dijkstra
 pygame.init()
 
 WIDTH = 800
@@ -129,6 +130,13 @@ def ClearBoard(Grid):
             node.Reset()
 
 
+def ResetBoard_Leave_Walls_Start_End(Grid):
+    for row in Grid:
+        for node in row:
+            if not node.isWall() and not node.isStart() and not node.isEnd():
+                node.Reset()
+
+
 def Left_Clicked_Add_Wall(Grid, Start, End, ROW, width):
     mousePosition = pygame.mouse.get_pos()
     row, col = MouseClickPosition_To_Grid_Position(mousePosition, ROW, width)
@@ -158,7 +166,7 @@ def Right_Clicked_Erase(Grid, Start, End, ROW, width):
 
 
 def main():
-    ROW = 50
+    ROW = 20
     Grid = MakeGrid(ROW, WIDTH)
     run = True
     Start = None
@@ -176,6 +184,11 @@ def main():
                     Start = None
                     End = None
                     Grid = MakeGrid(ROW, WIDTH)
+
+                # Press key r to clean board but leave walls, start, end nodes
+                elif event.key == pygame.K_r:
+                    ResetBoard_Leave_Walls_Start_End(Grid)
+                    # Grid = MakeGrid(ROW, WIDTH)
 
                 # Press key b to visualize BFS algorithm
                 elif event.key == pygame.K_b:
@@ -198,6 +211,15 @@ def main():
                 # Press key a to visualize A* algorithm
                 elif event.key == pygame.K_a:
                     Astar(
+                        lambda: Draw(screen, Grid, ROW, WIDTH),
+                        Grid,
+                        Start,
+                        End
+                    )
+
+                # Press key j to visualize Dijkstra algorithm
+                elif event.key == pygame.K_j:
+                    Dijkstra(
                         lambda: Draw(screen, Grid, ROW, WIDTH),
                         Grid,
                         Start,
