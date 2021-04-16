@@ -14,9 +14,9 @@
 
 ## Getting Started
 
-* Click twice to add Source node, End nodes
+* First Mouse Click twice to add Source node, End nodes
 * Mouse left click to add walls
-* Mouse right click to remove walls
+* Mouse right click to remove nodes
 * Press d to use DFS Algorithm
 * Press b to use BFS Algorithm
 * Press a to use A* Algorithm
