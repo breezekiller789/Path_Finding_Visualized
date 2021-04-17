@@ -1,19 +1,19 @@
 # Path Finding Algorithm Visualized Using Pygame
 
 ## A* Algorithm Demo
-![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Astar_Demo.gif)
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Demo_GIFs/Astar_Demo.gif)
 
 ## BFS Algorithm Demo
-![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/BFS_Demo.gif)
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Demo_GIFs/BFS_Demo.gif)
 
 ## Dijkstra Algorithm Demo
-![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Dijkstra_Demo.gif)
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Demo_GIFs/Dijkstra_Demo.gif)
 
 ## DFS Algorithm Demo
-![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/DFS_Demo.gif)
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Demo_GIFs/DFS_Demo.gif)
 
 ## Dijkstra Algorithm Using Fibonacci Heap Demo
-![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Fibonacci_Heap_Dijkstra_Demo.gif)
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Demo_GIFs/Fibonacci_Heap_Dijkstra_Demo.gif)
 
 ## Getting Started
 
