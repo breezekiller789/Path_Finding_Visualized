@@ -25,7 +25,7 @@ def Dijkstra(Draw, Grid, Start, End):
 
         # Found the path, so trace back the path
         if currentNode == End:
-            Reconstruct_Path(Draw, currentNode, End)
+            Reconstruct_Path(Draw, currentNode, Start, End)
             return True
 
         temp_Distance = Distances[currentNode] + 1
@@ -36,7 +36,8 @@ def Dijkstra(Draw, Grid, Start, End):
                     Time_Inserted += 1
                     neighbor.comefrom = currentNode
                     Distances[neighbor] = temp_Distance
-                    neighbor.makeOpenSet()
+                    if neighbor != End:
+                        neighbor.makeOpenSet()
                     Visited.add(neighbor)
                     Q.put((Distances[neighbor], Time_Inserted, neighbor))
         Draw()

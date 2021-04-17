@@ -17,7 +17,7 @@ def BFS(Draw, Grid, Start, End):
         currentNode = Q.get()
         # Found the path, so trace back the path
         if currentNode == End:
-            Reconstruct_Path(Draw, currentNode, End)
+            Reconstruct_Path(Draw, currentNode, Start, End)
             return True
 
         # Update all the neighbors arround currentNode
@@ -27,7 +27,8 @@ def BFS(Draw, Grid, Start, End):
         for neighbor in currentNode.neighbors:
             if neighbor not in Visited:
                 neighbor.comefrom = currentNode
-                neighbor.makeOpenSet()
+                if neighbor != End:
+                    neighbor.makeOpenSet()
                 Q.put(neighbor)
                 Visited.add(neighbor)
         Draw()

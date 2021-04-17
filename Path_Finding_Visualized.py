@@ -1,5 +1,6 @@
 import pygame
 import Colors
+# import time
 from Algorithms.BFS import BFS
 from Algorithms.DFS import DFS
 from Algorithms.Astar import Astar
@@ -9,7 +10,7 @@ pygame.init()
 
 WIDTH = 1000
 screen = pygame.display.set_mode((WIDTH, WIDTH))
-pygame.display.set_caption("A* Path Finding Algorithm")
+pygame.display.set_caption("Path Finding Algorithm Visualized")
 
 
 class Node(object):
@@ -132,11 +133,17 @@ def ClearBoard(Grid):
             node.Reset()
 
 
-def ResetBoard_Leave_Walls_Start_End(Grid):
+def ResetBoard_Leave_Walls_Start_End(Grid, Start):
     for row in Grid:
         for node in row:
             if not node.isWall() and not node.isStart() and not node.isEnd():
                 node.Reset()
+
+    # Added this because Start node's neighbors will not be updated properly, it
+    # will keep on appending to the neighbors list and cause issues when user
+    # want to add walls arround Start node
+    Start.Reset()
+    Start.makeStart()
 
 
 def Left_Clicked_Add_Wall(Grid, Start, End, ROW, width):
@@ -181,11 +188,11 @@ def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
 
     # Press key r to clean board but leave walls, start, end nodes
     elif event.key == pygame.K_r:
-        ResetBoard_Leave_Walls_Start_End(Grid)
+        ResetBoard_Leave_Walls_Start_End(Grid, Start)
 
     # Press key b to visualize BFS algorithm
     elif event.key == pygame.K_b:
-        ResetBoard_Leave_Walls_Start_End(Grid)
+        ResetBoard_Leave_Walls_Start_End(Grid, Start)
         BFS(
             lambda: Draw(screen, Grid, ROW, width),
             Grid,
@@ -195,7 +202,7 @@ def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
 
     # Press key d to visualize DFS algorithm
     elif event.key == pygame.K_d:
-        ResetBoard_Leave_Walls_Start_End(Grid)
+        ResetBoard_Leave_Walls_Start_End(Grid, Start)
         DFS(
             lambda: Draw(screen, Grid, ROW, width),
             Grid,
@@ -205,7 +212,7 @@ def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
 
     # Press key a to visualize A* algorithm
     elif event.key == pygame.K_a:
-        ResetBoard_Leave_Walls_Start_End(Grid)
+        ResetBoard_Leave_Walls_Start_End(Grid, Start)
         Astar(
             lambda: Draw(screen, Grid, ROW, width),
             Grid,
@@ -215,7 +222,7 @@ def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
 
     # Press key j to visualize Dijkstra algorithm
     elif event.key == pygame.K_j:
-        ResetBoard_Leave_Walls_Start_End(Grid)
+        ResetBoard_Leave_Walls_Start_End(Grid, Start)
         Dijkstra(
             lambda: Draw(screen, Grid, ROW, width),
             Grid,
@@ -224,7 +231,7 @@ def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
         )
     # Press key f to visualize Fibonacci Heap Dijkstra algorithm
     elif event.key == pygame.K_f:
-        ResetBoard_Leave_Walls_Start_End(Grid)
+        ResetBoard_Leave_Walls_Start_End(Grid, Start)
         Fibanocci_Heap_Dijkstra(
             lambda: Draw(screen, Grid, ROW, width),
             Grid,

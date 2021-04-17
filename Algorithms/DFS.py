@@ -41,7 +41,7 @@ def DFS(Draw, Grid, Start, End):
 
         # Found Path
         if currentNode == End:
-            Reconstruct_Path(Draw, currentNode, End)
+            Reconstruct_Path(Draw, currentNode, Start, End)
             return True
 
         Draw()

@@ -37,7 +37,7 @@ def Astar(Draw, Grid, Start, End):
 
         # Found Path
         if currentNode == End:
-            Reconstruct_Path(Draw, currentNode, End)
+            Reconstruct_Path(Draw, currentNode, Start, End)
             return
 
         # Update Neighbors' g, f scores
@@ -56,7 +56,8 @@ def Astar(Draw, Grid, Start, End):
                     time_inserted += 1  # Add time stamp
                     openSetHash.add(neighbor)
                     openSet.put((f_Score[neighbor], time_inserted, neighbor))
-                    neighbor.makeOpenSet()
+                    if neighbor != End:
+                        neighbor.makeOpenSet()
         Draw()
         if currentNode != Start:
             currentNode.makeClosedSet()
