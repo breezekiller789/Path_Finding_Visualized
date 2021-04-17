@@ -12,6 +12,9 @@
 ## DFS Algorithm Demo
 ![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/DFS_Demo.gif)
 
+## Dijkstra Using Fibonacci Heap Algorithm Demo
+![image](https://github.com/breezekiller789/Path_Finding_Visualized/blob/master/Fibonacci_Heap_Dijkstra_Demo.gif)
+
 ## Getting Started
 
 * First two mouse click to add Source node, End node
