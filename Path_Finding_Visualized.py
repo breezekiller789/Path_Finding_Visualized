@@ -6,7 +6,7 @@ from Algorithms.DFS import DFS
 from Algorithms.Astar import Astar
 from Algorithms.Dijkstra import Dijkstra
 from Algorithms.Fibanocci_Heap_Dijkstra import Fibanocci_Heap_Dijkstra
-from MazeGenerator.RandomizedDFS import RandomizedDFS
+from MazeGenerator.RandomizedMaze import RandomizedMaze
 pygame.init()
 
 WIDTH = 1000
@@ -264,7 +264,10 @@ def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
         Start, End = Add_Weighted_Wall(Grid, Start, End, ROW, width)
 
     elif event.key == pygame.K_g:
-        Start, End = RandomizedDFS(lambda: Draw(screen, Grid, ROW, width), Grid)
+        Start, End = RandomizedMaze(
+            lambda: Draw(screen, Grid, ROW, width),
+            Grid
+        )
 
     return Start, End, Grid
 

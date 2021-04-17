@@ -8,7 +8,7 @@ def MakeGridAllWalls(Grid):
             node.makeWall()
 
 
-def RandomizedDFS(Draw, Grid):
+def RandomizedMaze(Draw, Grid):
     Rows = len(Grid[0])
     lists = [num for num in range(1, Rows-1)]
     MakeGridAllWalls(Grid)
