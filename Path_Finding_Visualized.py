@@ -4,6 +4,7 @@ from Algorithms.BFS import BFS
 from Algorithms.DFS import DFS
 from Algorithms.Astar import Astar
 from Algorithms.Dijkstra import Dijkstra
+from Algorithms.Fibanocci_Heap_Dijkstra import Fibanocci_Heap_Dijkstra
 pygame.init()
 
 WIDTH = 1000
@@ -38,6 +39,8 @@ class Node(object):
 
     def Reset(self):
         self.color = Colors.WHITE
+        self.neighbors = []
+        self.comefrom = None
 
     def makeStart(self):
         self.color = Colors.ORANGE
@@ -156,12 +159,79 @@ def Right_Clicked_Erase(Grid, Start, End, ROW, width):
     mousePosition = pygame.mouse.get_pos()
     row, col = MouseClickPosition_To_Grid_Position(mousePosition, ROW, width)
     nodeClicked = Grid[row][col]
-    nodeClicked.Reset()
     if nodeClicked == Start:
+        Start.Reset()
         Start = None
     elif nodeClicked == End:
+        End.Reset()
         End = None
+    else:
+        nodeClicked.Reset()
     return Start, End
+
+
+def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
+
+    # Press key c to clean the board
+    if event.key == pygame.K_c:
+        ClearBoard(Grid)
+        Start = None
+        End = None
+        Grid = MakeGrid(ROW, width)
+
+    # Press key r to clean board but leave walls, start, end nodes
+    elif event.key == pygame.K_r:
+        ResetBoard_Leave_Walls_Start_End(Grid)
+
+    # Press key b to visualize BFS algorithm
+    elif event.key == pygame.K_b:
+        ResetBoard_Leave_Walls_Start_End(Grid)
+        BFS(
+            lambda: Draw(screen, Grid, ROW, width),
+            Grid,
+            Start,
+            End
+        )
+
+    # Press key d to visualize DFS algorithm
+    elif event.key == pygame.K_d:
+        ResetBoard_Leave_Walls_Start_End(Grid)
+        DFS(
+            lambda: Draw(screen, Grid, ROW, width),
+            Grid,
+            Start,
+            End
+        )
+
+    # Press key a to visualize A* algorithm
+    elif event.key == pygame.K_a:
+        ResetBoard_Leave_Walls_Start_End(Grid)
+        Astar(
+            lambda: Draw(screen, Grid, ROW, width),
+            Grid,
+            Start,
+            End
+        )
+
+    # Press key j to visualize Dijkstra algorithm
+    elif event.key == pygame.K_j:
+        ResetBoard_Leave_Walls_Start_End(Grid)
+        Dijkstra(
+            lambda: Draw(screen, Grid, ROW, width),
+            Grid,
+            Start,
+            End
+        )
+    # Press key f to visualize Fibonacci Heap Dijkstra algorithm
+    elif event.key == pygame.K_f:
+        ResetBoard_Leave_Walls_Start_End(Grid)
+        Fibanocci_Heap_Dijkstra(
+            lambda: Draw(screen, Grid, ROW, width),
+            Grid,
+            Start,
+            End
+        )
+    return Start, End, Grid
 
 
 def main():
@@ -178,55 +248,18 @@ def main():
 
             elif event.type == pygame.KEYDOWN:
 
-                # Press key c to clean the board
-                if event.key == pygame.K_c:
-                    ClearBoard(Grid)
-                    Start = None
-                    End = None
-                    Grid = MakeGrid(ROW, WIDTH)
-
-                # Press key r to clean board but leave walls, start, end nodes
-                elif event.key == pygame.K_r:
-                    ResetBoard_Leave_Walls_Start_End(Grid)
-
-                # Press key b to visualize BFS algorithm
-                elif event.key == pygame.K_b:
-                    BFS(
-                        lambda: Draw(screen, Grid, ROW, WIDTH),
-                        Grid,
-                        Start,
-                        End
-                    )
-
-                # Press key d to visualize DFS algorithm
-                elif event.key == pygame.K_d:
-                    DFS(
-                        lambda: Draw(screen, Grid, ROW, WIDTH),
-                        Grid,
-                        Start,
-                        End
-                    )
-
-                # Press key a to visualize A* algorithm
-                elif event.key == pygame.K_a:
-                    Astar(
-                        lambda: Draw(screen, Grid, ROW, WIDTH),
-                        Grid,
-                        Start,
-                        End
-                    )
-
-                # Press key j to visualize Dijkstra algorithm
-                elif event.key == pygame.K_j:
-                    Dijkstra(
-                        lambda: Draw(screen, Grid, ROW, WIDTH),
-                        Grid,
-                        Start,
-                        End
-                    )
+                Start, End, Grid = Keydown_Events(
+                    event,
+                    ROW,
+                    WIDTH,
+                    Grid,
+                    Start,
+                    End,
+                    screen
+                )
 
             # Left click to add wall
-            if pygame.mouse.get_pressed()[0]:
+            elif pygame.mouse.get_pressed()[0]:
                 Start, End = Left_Clicked_Add_Wall(Grid, Start, End, ROW, WIDTH)
 
             # Right click to reset node
