@@ -6,6 +6,7 @@ from Algorithms.DFS import DFS
 from Algorithms.Astar import Astar
 from Algorithms.Dijkstra import Dijkstra
 from Algorithms.Fibanocci_Heap_Dijkstra import Fibanocci_Heap_Dijkstra
+from MazeGenerator.RandomizedDFS import RandomizedDFS
 pygame.init()
 
 WIDTH = 1000
@@ -44,13 +45,16 @@ class Node(object):
         self.comefrom = None
 
     def makeStart(self):
-        self.color = Colors.ORANGE
+        self.color = Colors.YELLOW
 
     def makeEnd(self):
         self.color = Colors.RED
 
     def makeWall(self):
         self.color = Colors.BLACK
+
+    def makeWeightedWall(self):
+        self.color = Colors.CONCRETE
 
     def makeOpenSet(self):
         self.color = Colors.GREEN
@@ -177,6 +181,22 @@ def Right_Clicked_Erase(Grid, Start, End, ROW, width):
     return Start, End
 
 
+def Add_Weighted_Wall(Grid, Start, End, ROW, width):
+    mousePosition = pygame.mouse.get_pos()
+    row, col = MouseClickPosition_To_Grid_Position(mousePosition, ROW, width)
+    nodeClicked = Grid[row][col]
+    if not Start:
+        Start = nodeClicked
+        nodeClicked.makeStart()
+    # Don't let End to override Start, so added the AND statement
+    elif not End and nodeClicked != Start:
+        End = nodeClicked
+        nodeClicked.makeEnd()
+    elif nodeClicked != Start and nodeClicked != End:
+        nodeClicked.makeWeightedWall()
+    return Start, End
+
+
 def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
 
     # Press key c to clean the board
@@ -238,6 +258,14 @@ def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
             Start,
             End
         )
+
+    # Press w to add weighted wall
+    elif event.key == pygame.K_w:
+        Start, End = Add_Weighted_Wall(Grid, Start, End, ROW, width)
+
+    elif event.key == pygame.K_g:
+        Start, End = RandomizedDFS(lambda: Draw(screen, Grid, ROW, width), Grid)
+
     return Start, End, Grid
 
 
