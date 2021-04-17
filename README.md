@@ -22,6 +22,7 @@
 * Press a to use A* Algorithm
 * Press j to use Dijkstra Algorithm
 * Press f to use Fibonacci Heap Dijkstra Algorithm
+* Press g to generate a random maze
 * Press SPACE to pause the algorithm
 * Press c to clear board
 * Press r to clear board but leave walls, start, end nodes
