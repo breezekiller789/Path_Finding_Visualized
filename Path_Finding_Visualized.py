@@ -270,7 +270,7 @@ def Keydown_Events(event, ROW, width, Grid, Start, End, screen):
 
 
 def main():
-    ROW = 20    # Modify this to change size
+    ROW = 50    # Modify this to change size
     Grid = MakeGrid(ROW, WIDTH)
     run = True
     Start = None
