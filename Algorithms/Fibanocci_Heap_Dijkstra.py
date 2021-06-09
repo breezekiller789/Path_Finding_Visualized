@@ -7,12 +7,6 @@ import pygame
 # Time = O(VlogV + E)
 
 
-heap1 = fibheap.makefheap()
-nums = [1, 3, 10, 2, 8, 9, 11]
-for num in nums:
-    fibheap.fheappush(heap1, num)
-
-
 def Fibanocci_Heap_Dijkstra(Draw, Grid, Start, End):
     Time_Inserted = 0
     Visited = {Start}
@@ -27,6 +21,7 @@ def Fibanocci_Heap_Dijkstra(Draw, Grid, Start, End):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     return
+        # Extract min, O(logn)
         currentNode = fibheap.fheappop(FHeap)[2]
         currentNode.updateNeighbors(Grid)
 
@@ -46,6 +41,7 @@ def Fibanocci_Heap_Dijkstra(Draw, Grid, Start, End):
                     if neighbor != End:
                         neighbor.makeOpenSet()
                     Visited.add(neighbor)
+                    # Decrease key
                     fibheap.fheappush(
                         FHeap,
                         (Distances[neighbor], Time_Inserted, neighbor)
