@@ -69,7 +69,8 @@ You can modify the board size by changing the ROW variable inside main(), enjoy:
 ## Author
 
 * **Willy Huang** - *Initial work*
-
+* [My Website](https://breezekiller789.github.io/blog/)
+* [Linkedin](https://www.linkedin.com/in/jin-wei-huang-6a4105208/)
 
 ## References
 
